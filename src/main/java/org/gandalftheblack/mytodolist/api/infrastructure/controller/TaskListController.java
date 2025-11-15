@@ -42,6 +42,12 @@ public class TaskListController {
     }
 
     @PutMapping("/{taskListId}")
+    public ResponseEntity<TaskList> updateTaskList(@PathVariable Long taskListId, @RequestBody TaskList taskList) {
+        TaskList updatedTaskList = postTaskListUseCase.execute(taskListId, taskList);
+        return ResponseEntity.ok(updatedTaskList);
+    }
+
+    @PutMapping("/{taskListId}/tasks")
     public ResponseEntity<TaskList> updateTaskList(@PathVariable Long taskListId, @RequestBody Task task) {
         TaskList updatedTaskList = addTaskToListUseCase.execute(taskListId, task);
         return ResponseEntity.ok(updatedTaskList);

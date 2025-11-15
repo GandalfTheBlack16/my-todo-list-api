@@ -20,4 +20,15 @@ public class PostTaskListUseCase {
         );
     }
 
+    public TaskList execute(Long taskListId, TaskList taskList) {
+        TaskListEntity existingEntity = taskListRepository.findById(taskListId)
+                .orElseThrow(() -> new IllegalArgumentException("TaskList not found with id: " + taskListId));
+
+        existingEntity.setName(taskList.getName());
+
+        return taskListMapper.entityToModel(
+                taskListRepository.save(existingEntity)
+        );
+    }
+
 }

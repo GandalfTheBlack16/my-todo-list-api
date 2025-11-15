@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: my-todo-list-api
+  datasource:
+    url: ${DB_URL:jdbc:h2:mem:testdb}
+    driver-class-name: ${DB_DRIVER:org.h2.Driver}
+    username: ${DB_USERNAME:sa}
+    password: ${DB_PASSWORD:}
+  jpa:
+    database-platform: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:create-drop}
+  sql:
+    init:
+      mode: ${SQL_INIT_MODE:always}
+      data-locations: classpath:init-h2.sql
